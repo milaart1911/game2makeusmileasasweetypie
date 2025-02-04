@@ -56,28 +56,22 @@ function createGame() {
 
         card.appendChild(buttonContainer);
         container.appendChild(card);
-
-        // Добавляем эффект плавного появления
-        setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-        }, index * 500);
     });
 }
 
 function checkAnswer(questionIndex, answerIndex, button) {
+    const buttons = button.parentElement.querySelectorAll("button");
+
+    buttons.forEach(btn => btn.disabled = true);
+
     if (answerIndex === questions[questionIndex].correct) {
         hugs += 10;
-        button.style.backgroundColor = "green"; // ✅ Правильный ответ
+        button.classList.add("correct"); // Зеленый цвет для правильного ответа
     } else {
-        button.style.backgroundColor = "red"; // ❌ Неправильный ответ
+        button.classList.add("wrong"); // Красный цвет для неправильного ответа
     }
 
     document.getElementById("hugs").textContent = hugs;
-
-    // Делаем все кнопки в этом вопросе неактивными после ответа
-    const buttons = button.parentElement.querySelectorAll("button");
-    buttons.forEach(btn => btn.disabled = true);
 }
 
 createGame();
