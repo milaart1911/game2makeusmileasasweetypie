@@ -56,6 +56,12 @@ function createGame() {
 
         card.appendChild(buttonContainer);
         container.appendChild(card);
+
+        // Добавляем эффект плавного появления
+        setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+        }, index * 500);
     });
 }
 
